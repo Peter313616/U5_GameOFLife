@@ -33,8 +33,7 @@ namespace U5_GameOfLife
         bool gameStart = false;
         Button btnPlay, btnPreset;
         DispatcherTimer gameTimer = new DispatcherTimer();
-        RadioButton rbPuffer;
-        RadioButton rbOscillator;
+        RadioButton rbPuffer, rbOscillator, rbArk;
         public MainWindow()
         {
             InitializeComponent();
@@ -84,6 +83,13 @@ namespace U5_GameOfLife
             Canvas.SetLeft(rbOscillator, 100);
             rbOscillator.Content = "Oscillator";
             canvas.Children.Add(rbOscillator);
+
+            rbArk = new RadioButton();
+            rbArk.GroupName = "Presets";
+            Canvas.SetTop(rbArk, 580);
+            Canvas.SetLeft(rbArk, 200);
+            rbArk.Content = "Noah's Ark";
+            canvas.Children.Add(rbArk);
 
             grid = new Button[50][];
             gridLive = new bool[50][];
@@ -140,7 +146,19 @@ namespace U5_GameOfLife
                     gridLive[values[0]][values[1]] = true;
                 }
             }
-            /*StreamWriter sw = new StreamWriter("tempOsc.txt"); //used to create Presets
+            else if (rbArk.IsChecked == true)
+            {
+                sr = new StreamReader("NoahsArk.txt");
+                while (!sr.EndOfStream)
+                {
+                    string[] tempValues = sr.ReadLine().Split(',');
+                    int[] values = new int[2];
+                    int.TryParse(tempValues[0], out values[0]);
+                    int.TryParse(tempValues[1], out values[1]);
+                    gridLive[values[0]][values[1]] = true;
+                }
+            }
+            /*StreamWriter sw = new StreamWriter("tempArc.txt"); //used to create Presets
             for (int x = 0; x < 50; x++)
             {
                 for (int y = 0; y < 50; y++)
