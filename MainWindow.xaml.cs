@@ -1,7 +1,7 @@
 /* 
  * Peter McEwen
  * May 27, 2019
- * Creates and allows to the user to play the game of life
+ * Creates and allows to the user to play the game of life (the game will run at full speed if playe from exe in debug)
  */
 using System;
 using System.Collections.Generic;
